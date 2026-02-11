@@ -88,20 +88,20 @@ EOT
     resource_group_name                      = string
     storage_account_access_key               = string
     storage_account_name                     = string
-    version                                  = optional(string, "~4")
-    use_extension_bundle                     = optional(bool, true)
+    version                                  = optional(string) # Default: "~4"
+    use_extension_bundle                     = optional(bool)   # Default: true
     tags                                     = optional(map(string))
     storage_account_share_name               = optional(string)
-    scm_publish_basic_authentication_enabled = optional(bool, true)
+    scm_publish_basic_authentication_enabled = optional(bool) # Default: true
     public_network_access                    = optional(string)
-    enabled                                  = optional(bool, true)
-    ftp_publish_basic_authentication_enabled = optional(bool, true)
+    enabled                                  = optional(bool) # Default: true
+    ftp_publish_basic_authentication_enabled = optional(bool) # Default: true
     virtual_network_subnet_id                = optional(string)
     client_certificate_mode                  = optional(string)
     client_affinity_enabled                  = optional(bool)
-    bundle_version                           = optional(string, "[1.*, 2.0.0)")
+    bundle_version                           = optional(string) # Default: "[1.*, 2.0.0)"
     app_settings                             = optional(map(string))
-    https_only                               = optional(bool, false)
+    https_only                               = optional(bool) # Default: false
     vnet_content_share_enabled               = optional(bool)
     connection_string = optional(object({
       name  = string
@@ -113,19 +113,19 @@ EOT
       type         = string
     }))
     site_config = optional(object({
-      always_on       = optional(bool, false)
+      always_on       = optional(bool) # Default: false
       app_scale_limit = optional(number)
       cors = optional(object({
         allowed_origins     = optional(set(string))
-        support_credentials = optional(bool, false)
+        support_credentials = optional(bool) # Default: false
       }))
-      dotnet_framework_version = optional(string, "v4.0")
+      dotnet_framework_version = optional(string) # Default: "v4.0"
       elastic_instance_minimum = optional(number)
       ftps_state               = optional(string)
       health_check_path        = optional(string)
-      http2_enabled            = optional(bool, false)
+      http2_enabled            = optional(bool) # Default: false
       ip_restriction = optional(object({
-        action      = optional(string, "Allow")
+        action      = optional(string) # Default: "Allow"
         description = optional(string)
         headers = optional(object({
           x_azure_fdid      = optional(list(string))
@@ -135,7 +135,7 @@ EOT
         }))
         ip_address                = optional(string)
         name                      = optional(string)
-        priority                  = optional(number, 65000)
+        priority                  = optional(number) # Default: 65000
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
       }))
@@ -143,9 +143,9 @@ EOT
       min_tls_version                  = optional(string)
       pre_warmed_instance_count        = optional(number)
       public_network_access_enabled    = optional(bool)
-      runtime_scale_monitoring_enabled = optional(bool, false)
+      runtime_scale_monitoring_enabled = optional(bool) # Default: false
       scm_ip_restriction = optional(object({
-        action      = optional(string, "Allow")
+        action      = optional(string) # Default: "Allow"
         description = optional(string)
         headers = optional(object({
           x_azure_fdid      = optional(list(string))
@@ -155,16 +155,16 @@ EOT
         }))
         ip_address                = optional(string)
         name                      = optional(string)
-        priority                  = optional(number, 65000)
+        priority                  = optional(number) # Default: 65000
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
       }))
       scm_min_tls_version         = optional(string)
       scm_type                    = optional(string)
-      scm_use_main_ip_restriction = optional(bool, false)
-      use_32_bit_worker_process   = optional(bool, true)
+      scm_use_main_ip_restriction = optional(bool) # Default: false
+      use_32_bit_worker_process   = optional(bool) # Default: true
       vnet_route_all_enabled      = optional(bool)
-      websockets_enabled          = optional(bool, false)
+      websockets_enabled          = optional(bool) # Default: false
     }))
   }))
 }
