@@ -13,6 +13,7 @@ resource "azurerm_logic_app_standard" "logic_app_standards" {
   storage_account_share_name               = each.value.storage_account_share_name
   scm_publish_basic_authentication_enabled = each.value.scm_publish_basic_authentication_enabled
   public_network_access                    = each.value.public_network_access
+  key_vault_reference_identity_id          = each.value.key_vault_reference_identity_id
   enabled                                  = each.value.enabled
   ftp_publish_basic_authentication_enabled = each.value.ftp_publish_basic_authentication_enabled
   virtual_network_subnet_id                = each.value.virtual_network_subnet_id
@@ -78,6 +79,7 @@ resource "azurerm_logic_app_standard" "logic_app_standards" {
           virtual_network_subnet_id = ip_restriction.value.virtual_network_subnet_id
         }
       }
+      ip_restriction_default_action    = site_config.value.ip_restriction_default_action
       linux_fx_version                 = site_config.value.linux_fx_version
       min_tls_version                  = site_config.value.min_tls_version
       pre_warmed_instance_count        = site_config.value.pre_warmed_instance_count
@@ -104,12 +106,13 @@ resource "azurerm_logic_app_standard" "logic_app_standards" {
           virtual_network_subnet_id = scm_ip_restriction.value.virtual_network_subnet_id
         }
       }
-      scm_min_tls_version         = site_config.value.scm_min_tls_version
-      scm_type                    = site_config.value.scm_type
-      scm_use_main_ip_restriction = site_config.value.scm_use_main_ip_restriction
-      use_32_bit_worker_process   = site_config.value.use_32_bit_worker_process
-      vnet_route_all_enabled      = site_config.value.vnet_route_all_enabled
-      websockets_enabled          = site_config.value.websockets_enabled
+      scm_ip_restriction_default_action = site_config.value.scm_ip_restriction_default_action
+      scm_min_tls_version               = site_config.value.scm_min_tls_version
+      scm_type                          = site_config.value.scm_type
+      scm_use_main_ip_restriction       = site_config.value.scm_use_main_ip_restriction
+      use_32_bit_worker_process         = site_config.value.use_32_bit_worker_process
+      vnet_route_all_enabled            = site_config.value.vnet_route_all_enabled
+      websockets_enabled                = site_config.value.websockets_enabled
     }
   }
 }

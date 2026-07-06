@@ -16,6 +16,7 @@ Optional:
     - enabled
     - ftp_publish_basic_authentication_enabled
     - https_only
+    - key_vault_reference_identity_id
     - public_network_access
     - scm_publish_basic_authentication_enabled
     - storage_account_share_name
@@ -55,6 +56,7 @@ Optional:
             - priority (optional)
             - service_tag (optional)
             - virtual_network_subnet_id (optional)
+        - ip_restriction_default_action (optional)
         - linux_fx_version (optional)
         - min_tls_version (optional)
         - pre_warmed_instance_count (optional)
@@ -73,6 +75,7 @@ Optional:
             - priority (optional)
             - service_tag (optional)
             - virtual_network_subnet_id (optional)
+        - scm_ip_restriction_default_action (optional)
         - scm_min_tls_version (optional)
         - scm_type (optional)
         - scm_use_main_ip_restriction (optional)
@@ -94,6 +97,7 @@ EOT
     storage_account_share_name               = optional(string)
     scm_publish_basic_authentication_enabled = optional(bool) # Default: true
     public_network_access                    = optional(string)
+    key_vault_reference_identity_id          = optional(string)
     enabled                                  = optional(bool) # Default: true
     ftp_publish_basic_authentication_enabled = optional(bool) # Default: true
     virtual_network_subnet_id                = optional(string)
@@ -139,6 +143,7 @@ EOT
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
       }))
+      ip_restriction_default_action    = optional(string)
       linux_fx_version                 = optional(string)
       min_tls_version                  = optional(string)
       pre_warmed_instance_count        = optional(number)
@@ -159,12 +164,13 @@ EOT
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
       }))
-      scm_min_tls_version         = optional(string)
-      scm_type                    = optional(string)
-      scm_use_main_ip_restriction = optional(bool) # Default: false
-      use_32_bit_worker_process   = optional(bool) # Default: true
-      vnet_route_all_enabled      = optional(bool)
-      websockets_enabled          = optional(bool) # Default: false
+      scm_ip_restriction_default_action = optional(string)
+      scm_min_tls_version               = optional(string)
+      scm_type                          = optional(string)
+      scm_use_main_ip_restriction       = optional(bool) # Default: false
+      use_32_bit_worker_process         = optional(bool) # Default: true
+      vnet_route_all_enabled            = optional(bool)
+      websockets_enabled                = optional(bool) # Default: false
     }))
   }))
 }
