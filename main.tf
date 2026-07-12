@@ -1,3 +1,8 @@
+data "azurerm_key_vault_secret" "storage_account_access_key" {
+  for_each     = { for k, v in var.logic_app_standards : k => v if v.storage_account_access_key_key_vault_id != null && v.storage_account_access_key_key_vault_secret_name != null }
+  name         = each.value.storage_account_access_key_key_vault_secret_name
+  key_vault_id = each.value.storage_account_access_key_key_vault_id
+}
 resource "azurerm_logic_app_standard" "logic_app_standards" {
   for_each = var.logic_app_standards
 
@@ -5,7 +10,7 @@ resource "azurerm_logic_app_standard" "logic_app_standards" {
   location                                 = each.value.location
   name                                     = each.value.name
   resource_group_name                      = each.value.resource_group_name
-  storage_account_access_key               = each.value.storage_account_access_key
+  storage_account_access_key               = each.value.storage_account_access_key != null ? each.value.storage_account_access_key : try(data.azurerm_key_vault_secret.storage_account_access_key[each.key].value, null)
   storage_account_name                     = each.value.storage_account_name
   version                                  = each.value.version
   use_extension_bundle                     = each.value.use_extension_bundle

@@ -7,6 +7,8 @@ Required:
     - name
     - resource_group_name
     - storage_account_access_key
+    - storage_account_access_key_key_vault_id (alternative to storage_account_access_key - read from Key Vault instead)
+    - storage_account_access_key_key_vault_secret_name (alternative to storage_account_access_key - read from Key Vault instead)
     - storage_account_name
 Optional:
     - app_settings
@@ -85,28 +87,30 @@ Optional:
 EOT
 
   type = map(object({
-    app_service_plan_id                      = string
-    location                                 = string
-    name                                     = string
-    resource_group_name                      = string
-    storage_account_access_key               = string
-    storage_account_name                     = string
-    version                                  = optional(string) # Default: "~4"
-    use_extension_bundle                     = optional(bool)   # Default: true
-    tags                                     = optional(map(string))
-    storage_account_share_name               = optional(string)
-    scm_publish_basic_authentication_enabled = optional(bool) # Default: true
-    public_network_access                    = optional(string)
-    key_vault_reference_identity_id          = optional(string)
-    enabled                                  = optional(bool) # Default: true
-    ftp_publish_basic_authentication_enabled = optional(bool) # Default: true
-    virtual_network_subnet_id                = optional(string)
-    client_certificate_mode                  = optional(string)
-    client_affinity_enabled                  = optional(bool)
-    bundle_version                           = optional(string) # Default: "[1.*, 2.0.0)"
-    app_settings                             = optional(map(string))
-    https_only                               = optional(bool) # Default: false
-    vnet_content_share_enabled               = optional(bool)
+    app_service_plan_id                              = string
+    location                                         = string
+    name                                             = string
+    resource_group_name                              = string
+    storage_account_access_key                       = string
+    storage_account_access_key_key_vault_id          = optional(string)
+    storage_account_access_key_key_vault_secret_name = optional(string)
+    storage_account_name                             = string
+    version                                          = optional(string) # Default: "~4"
+    use_extension_bundle                             = optional(bool)   # Default: true
+    tags                                             = optional(map(string))
+    storage_account_share_name                       = optional(string)
+    scm_publish_basic_authentication_enabled         = optional(bool) # Default: true
+    public_network_access                            = optional(string)
+    key_vault_reference_identity_id                  = optional(string)
+    enabled                                          = optional(bool) # Default: true
+    ftp_publish_basic_authentication_enabled         = optional(bool) # Default: true
+    virtual_network_subnet_id                        = optional(string)
+    client_certificate_mode                          = optional(string)
+    client_affinity_enabled                          = optional(bool)
+    bundle_version                                   = optional(string) # Default: "[1.*, 2.0.0)"
+    app_settings                                     = optional(map(string))
+    https_only                                       = optional(bool) # Default: false
+    vnet_content_share_enabled                       = optional(bool)
     connection_string = optional(list(object({
       name  = string
       type  = string
