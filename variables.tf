@@ -107,11 +107,11 @@ EOT
     app_settings                             = optional(map(string))
     https_only                               = optional(bool) # Default: false
     vnet_content_share_enabled               = optional(bool)
-    connection_string = optional(object({
+    connection_string = optional(list(object({
       name  = string
       type  = string
       value = string
-    }))
+    })))
     identity = optional(object({
       identity_ids = optional(set(string))
       type         = string
@@ -128,7 +128,7 @@ EOT
       ftps_state               = optional(string)
       health_check_path        = optional(string)
       http2_enabled            = optional(bool) # Default: false
-      ip_restriction = optional(object({
+      ip_restriction = optional(list(object({
         action      = optional(string) # Default: "Allow"
         description = optional(string)
         headers = optional(object({
@@ -142,14 +142,14 @@ EOT
         priority                  = optional(number) # Default: 65000
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
-      }))
+      })))
       ip_restriction_default_action    = optional(string)
       linux_fx_version                 = optional(string)
       min_tls_version                  = optional(string)
       pre_warmed_instance_count        = optional(number)
       public_network_access_enabled    = optional(bool)
       runtime_scale_monitoring_enabled = optional(bool) # Default: false
-      scm_ip_restriction = optional(object({
+      scm_ip_restriction = optional(list(object({
         action      = optional(string) # Default: "Allow"
         description = optional(string)
         headers = optional(object({
@@ -163,7 +163,7 @@ EOT
         priority                  = optional(number) # Default: 65000
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
-      }))
+      })))
       scm_ip_restriction_default_action = optional(string)
       scm_min_tls_version               = optional(string)
       scm_type                          = optional(string)

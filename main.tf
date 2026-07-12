@@ -25,7 +25,7 @@ resource "azurerm_logic_app_standard" "logic_app_standards" {
   vnet_content_share_enabled               = each.value.vnet_content_share_enabled
 
   dynamic "connection_string" {
-    for_each = each.value.connection_string != null ? [each.value.connection_string] : []
+    for_each = each.value.connection_string != null ? each.value.connection_string : []
     content {
       name  = connection_string.value.name
       type  = connection_string.value.type
@@ -59,7 +59,7 @@ resource "azurerm_logic_app_standard" "logic_app_standards" {
       health_check_path        = site_config.value.health_check_path
       http2_enabled            = site_config.value.http2_enabled
       dynamic "ip_restriction" {
-        for_each = site_config.value.ip_restriction != null ? [site_config.value.ip_restriction] : []
+        for_each = site_config.value.ip_restriction != null ? site_config.value.ip_restriction : []
         content {
           action      = ip_restriction.value.action
           description = ip_restriction.value.description
@@ -86,7 +86,7 @@ resource "azurerm_logic_app_standard" "logic_app_standards" {
       public_network_access_enabled    = site_config.value.public_network_access_enabled
       runtime_scale_monitoring_enabled = site_config.value.runtime_scale_monitoring_enabled
       dynamic "scm_ip_restriction" {
-        for_each = site_config.value.scm_ip_restriction != null ? [site_config.value.scm_ip_restriction] : []
+        for_each = site_config.value.scm_ip_restriction != null ? site_config.value.scm_ip_restriction : []
         content {
           action      = scm_ip_restriction.value.action
           description = scm_ip_restriction.value.description
