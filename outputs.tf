@@ -1,3 +1,7 @@
+output "logic_app_standards_id" {
+  description = "Map of id values across all logic_app_standards, keyed the same as var.logic_app_standards"
+  value       = { for k, v in azurerm_logic_app_standard.logic_app_standards : k => v.id }
+}
 output "logic_app_standards_app_service_plan_id" {
   description = "Map of app_service_plan_id values across all logic_app_standards, keyed the same as var.logic_app_standards"
   value       = { for k, v in azurerm_logic_app_standard.logic_app_standards : k => v.app_service_plan_id }
