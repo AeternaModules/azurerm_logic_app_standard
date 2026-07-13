@@ -7,8 +7,8 @@ Required:
     - name
     - resource_group_name
     - storage_account_access_key
-    - storage_account_access_key_key_vault_id (alternative to storage_account_access_key - read from Key Vault instead)
-    - storage_account_access_key_key_vault_secret_name (alternative to storage_account_access_key - read from Key Vault instead)
+    - storage_account_access_key_key_vault_id (optional, alternative to storage_account_access_key)
+    - storage_account_access_key_key_vault_secret_name (optional, alternative to storage_account_access_key)
     - storage_account_name
 Optional:
     - app_settings
@@ -95,21 +95,21 @@ EOT
     storage_account_access_key_key_vault_id          = optional(string)
     storage_account_access_key_key_vault_secret_name = optional(string)
     storage_account_name                             = string
-    version                                          = optional(string) # Default: "~4"
-    use_extension_bundle                             = optional(bool)   # Default: true
+    version                                          = optional(string)
+    use_extension_bundle                             = optional(bool)
     tags                                             = optional(map(string))
     storage_account_share_name                       = optional(string)
-    scm_publish_basic_authentication_enabled         = optional(bool) # Default: true
+    scm_publish_basic_authentication_enabled         = optional(bool)
     public_network_access                            = optional(string)
     key_vault_reference_identity_id                  = optional(string)
-    enabled                                          = optional(bool) # Default: true
-    ftp_publish_basic_authentication_enabled         = optional(bool) # Default: true
+    enabled                                          = optional(bool)
+    ftp_publish_basic_authentication_enabled         = optional(bool)
     virtual_network_subnet_id                        = optional(string)
     client_certificate_mode                          = optional(string)
     client_affinity_enabled                          = optional(bool)
-    bundle_version                                   = optional(string) # Default: "[1.*, 2.0.0)"
+    bundle_version                                   = optional(string)
     app_settings                                     = optional(map(string))
-    https_only                                       = optional(bool) # Default: false
+    https_only                                       = optional(bool)
     vnet_content_share_enabled                       = optional(bool)
     connection_string = optional(list(object({
       name  = string
@@ -121,29 +121,29 @@ EOT
       type         = string
     }))
     site_config = optional(object({
-      always_on       = optional(bool) # Default: false
+      always_on       = optional(bool)
       app_scale_limit = optional(number)
       cors = optional(object({
         allowed_origins     = optional(set(string))
-        support_credentials = optional(bool) # Default: false
+        support_credentials = optional(bool)
       }))
-      dotnet_framework_version = optional(string) # Default: "v4.0"
+      dotnet_framework_version = optional(string)
       elastic_instance_minimum = optional(number)
       ftps_state               = optional(string)
       health_check_path        = optional(string)
-      http2_enabled            = optional(bool) # Default: false
+      http2_enabled            = optional(bool)
       ip_restriction = optional(list(object({
-        action      = optional(string) # Default: "Allow"
+        action      = optional(string)
         description = optional(string)
-        headers = optional(object({
+        headers = optional(list(object({
           x_azure_fdid      = optional(list(string))
           x_fd_health_probe = optional(list(string))
           x_forwarded_for   = optional(list(string))
           x_forwarded_host  = optional(list(string))
-        }))
+        })))
         ip_address                = optional(string)
         name                      = optional(string)
-        priority                  = optional(number) # Default: 65000
+        priority                  = optional(number)
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
       })))
@@ -152,29 +152,29 @@ EOT
       min_tls_version                  = optional(string)
       pre_warmed_instance_count        = optional(number)
       public_network_access_enabled    = optional(bool)
-      runtime_scale_monitoring_enabled = optional(bool) # Default: false
+      runtime_scale_monitoring_enabled = optional(bool)
       scm_ip_restriction = optional(list(object({
-        action      = optional(string) # Default: "Allow"
+        action      = optional(string)
         description = optional(string)
-        headers = optional(object({
+        headers = optional(list(object({
           x_azure_fdid      = optional(list(string))
           x_fd_health_probe = optional(list(string))
           x_forwarded_for   = optional(list(string))
           x_forwarded_host  = optional(list(string))
-        }))
+        })))
         ip_address                = optional(string)
         name                      = optional(string)
-        priority                  = optional(number) # Default: 65000
+        priority                  = optional(number)
         service_tag               = optional(string)
         virtual_network_subnet_id = optional(string)
       })))
       scm_ip_restriction_default_action = optional(string)
       scm_min_tls_version               = optional(string)
       scm_type                          = optional(string)
-      scm_use_main_ip_restriction       = optional(bool) # Default: false
-      use_32_bit_worker_process         = optional(bool) # Default: true
+      scm_use_main_ip_restriction       = optional(bool)
+      use_32_bit_worker_process         = optional(bool)
       vnet_route_all_enabled            = optional(bool)
-      websockets_enabled                = optional(bool) # Default: false
+      websockets_enabled                = optional(bool)
     }))
   }))
 }
